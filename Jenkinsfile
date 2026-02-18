@@ -3,7 +3,7 @@ pipeline {
 
     stages {
 
-        stage('Pull Code') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
@@ -11,19 +11,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat '"C:\\Users\\SWAPNA MANI\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat '"C:\\Users\\SWAPNA MANI\\AppData\\Local\\Programs\\Python\\Python314\\Scripts\\pytest.exe"'
+                bat 'pytest'
             }
         }
 
-        stage('Deploy App') {
+        stage('Run Application') {
             steps {
-                bat 'start cmd /c "C:\\Users\\SWAPNA MANI\\AppData\\Local\\Programs\\Python\\Python314\\python.exe app.py"'
+                bat 'python app.py'
             }
         }
     }
