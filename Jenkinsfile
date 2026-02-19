@@ -3,7 +3,7 @@ pipeline {
 
     stages {
 
-        stage('Pull Code') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
@@ -21,10 +21,13 @@ pipeline {
             }
         }
 
+<<<<<<< HEAD
         stage('Deploy') {
     steps {
         bat 'taskkill /F /IM python.exe || exit 0'
         bat 'python app.py'
+=======
+>>>>>>> 2bb15267d212cb22019600553c214a83b0387e73
     }
 }
 
