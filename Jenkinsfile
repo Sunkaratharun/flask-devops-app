@@ -22,22 +22,12 @@ pipeline {
             }
         }
 
-
         stage('Run Docker Container') {
             steps {
                 bat 'docker run -d -p 5000:5000 --name flask-container flask-devops-app'
             }
         }
     }
-}
-
-       stage('Deploy') {
-    steps {
-        bat 'taskkill /F /IM python.exe || exit 0'
-        bat 'start "" "C:\\Users\\SWAPNA MANI\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" app.py'
-    }
-}
-
 }
 
 
