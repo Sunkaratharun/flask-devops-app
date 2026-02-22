@@ -9,25 +9,23 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build Docker Image') {
             steps {
-                bat '"C:\\Users\\SWAPNA MANI\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m pip install -r requirements.txt'
+                bat 'docker build -t flask-devops-app .'
             }
         }
 
-        stage('Run Tests') {
+        stage('Stop Old Container') {
             steps {
-                bat '"C:\\Users\\SWAPNA MANI\\AppData\\Local\\Programs\\Python\\Python314\\Scripts\\pytest.exe"'
+                bat 'docker stop flask-container || exit 0'
+                bat 'docker rm flask-container || exit 0'
             }
         }
 
-<<<<<<< HEAD
-        stage('Deploy') {
-    steps {
-        bat 'taskkill /F /IM python.exe || exit 0'
-        bat 'python app.py'
-=======
->>>>>>> 2bb15267d212cb22019600553c214a83b0387e73
+        stage('Run Docker Container') {
+            steps {
+                bat 'docker run -d -p 5000:5000 --name flask-container flask-devops-app'
+            }
+        }
     }
 }
-
