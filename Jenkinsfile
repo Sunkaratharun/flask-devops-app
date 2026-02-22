@@ -39,12 +39,10 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                bat "docker stop flask-container || exit 0"
-                bat "docker rm flask-container || exit 0"
+                bat "docker stop flask-container || echo No container running"
+                bat "docker rm flask-container || echo No container to remove"
                 bat "docker run -d -p 5000:5000 --name flask-container %DOCKER_IMAGE%:latest"
             }
         }
-    }
-}
     }
 }
