@@ -17,8 +17,11 @@ pipeline {
 
         stage('Stop Old Container') {
             steps {
-                bat 'docker stop flask-container || exit 0'
-                bat 'docker rm flask-container || exit 0'
+                bat '''
+                docker stop flask-container
+                docker rm flask-container
+                exit 0
+                '''
             }
         }
 
@@ -29,6 +32,3 @@ pipeline {
         }
     }
 }
-
-
-
