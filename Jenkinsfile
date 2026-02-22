@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-<<<<<<< HEAD
+
         stage('Run Docker Container') {
             steps {
                 bat 'docker run -d -p 5000:5000 --name flask-container flask-devops-app'
@@ -30,7 +30,7 @@ pipeline {
         }
     }
 }
-=======
+
        stage('Deploy') {
     steps {
         bat 'taskkill /F /IM python.exe || exit 0'
@@ -43,4 +43,4 @@ pipeline {
 }
 
 
->>>>>>> 8332bc94accd1c6dbc384131a63f647b9c8ec42f
+
