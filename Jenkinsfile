@@ -16,6 +16,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
+                def imageName = "tharunsunkara/flask-devops-app:${env.BUILD_NUMBER}"
+                bat "docker build -t ${imageName} 
                 bat "docker build -t %DOCKER_IMAGE%:%BUILD_TAG% ."
                 bat "docker tag %DOCKER_IMAGE%:%BUILD_TAG% %DOCKER_IMAGE%:latest"
             }
@@ -35,6 +37,7 @@ pipeline {
 
         stage('Push Image') {
             steps {
+                bat "docker push ${imageName}"
                 bat "docker push %DOCKER_IMAGE%:%BUILD_TAG%"
                 bat "docker push %DOCKER_IMAGE%:latest"
             }
